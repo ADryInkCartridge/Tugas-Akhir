@@ -1,0 +1,159 @@
+# Import library
+import pandas as pd
+import numpy as np
+from nltk import ngrams
+
+function read_inset(file) do
+    Input = File Inset yang akan dibaca
+    Output = Dictionary yang berisi kata dan skornya
+
+    set sentiments = {}
+    set lines = open(file, "r")
+
+    foreach (line in lines) do
+        set word, sentimen = line.split("\t")
+        sentimens[word] = int(sentimen)
+    end
+
+    return Dictionary yang berisi kata dan skornya
+end
+
+function print_n_grams(unigrams, bigrams, trigrams) do
+    Input = Unigram, Bigram, Trigram
+    Output = Print Unigram, Bigram, Trigram
+
+    print("Unigram: ", " ".join(unigrams))
+    print("Bigram: ", " ".join(bigrams)
+    print("Trigram: ", " ".join(trigrams))
+end
+
+class InSet do
+    constructor(self, path,verbose) do
+        Input = Path dari file InSet
+        Output = Inset yang dapat memprediksi sentimen
+
+        set self.positive_words = read_inset(path + "positive.tsv")
+        set self.negative_words = read_inset(path + "negative.tsv")
+
+        if (verbose == true) do
+            print("Positive words: ", len(self.positive_words))
+            print("Negative words: ", len(self.negative_words))
+        end
+    end
+
+    function __calculate_n_grams(self, text): (String, String, String) do
+        Input = Text yang akan dihitung n-gramnya
+        Output = Unigram, Bigram, Trigram dari text
+
+        set unigrams = ngrams(text.split(), 1)
+        set bigrams = ngrams(text.split(), 2)
+        set trigrams = ngrams(text.split(), 3)
+
+        set joined_unigrams = []
+        foreach (unigram in unigrams) do
+            set joined_unigrams.append(" ".join(unigram))
+        end
+
+        set joined_bigrams = []
+        foreach (bigram in bigrams) do
+            set joined_bigrams.append(" ".join(bigram))
+        end
+
+        set joined_trigrams = []
+        foreach (trigram in trigrams) do
+            set joined_trigrams.append(" ".join(trigram))
+        end
+        
+        return string dari unigram, bigram, trigram
+    end
+
+    function __delete_word_from_text(self, text, word): String do
+        Input = Text yang akan dihapus kata-katanya
+        Output = Text yang sudah dihapus kata-katanya
+
+        text = text.replace(word, "")
+        return string dari text
+    end
+
+    function __recalculate_n_grams(self, text, words): (String, String, String) do
+        Input = Text yang akan dihitung ulang n-gramnya dan kata-kata yang akan dihapus
+        Output = Unigram, Bigram, Trigram dari text
+        
+        text = self.__delete_word_from_text(text, words)
+        set unigrams, bigrams, trigrams = self.__calculate_n_grams(text)
+
+        if (verbose == true) do
+            print_n_grams(unigrams, bigrams, trigrams)
+        end
+
+        return string dari unigram, bigram, trigram
+    end
+        
+    function calculate_inset_score(self, text): (Int, Int) do
+        Input = Text yang akan dihitung sentimennya
+        Output = Skor positif, skor negatif dari text
+
+        set unigrams, bigrams, trigrams = self.__calculate_n_grams(text)
+        set positive_score = 0
+        set negative_score = 0
+
+        // Looping untuk menghitung nilai sentimen dari n-grams
+        // Pencarian kata dilakukan dari Trigram -> Bigram -> Unigram, jika ditemukan maka kata akan dihapus dari kalimat
+
+        // Trigram
+        foreach (trigram in trigrams) do
+            if (trigram in self.positive_words) do
+                if (verbose == true) do
+                    print("Found positive trigram: ", trigram)
+                end
+                positive_score += self.positive_words[trigram]
+                text = self.__delete_word_from_text(text, trigram)
+            end
+            if (trigram in self.negative_words) do
+                if (verbose == true) do
+                    print("Found negative trigram: ", trigram)
+                end
+                negative_score += self.negative_words[trigram]
+                text = self.__delete_word_from_text(text, trigram)
+            end
+        end
+
+        // Bigram
+        foreach (bigram in bigrams) do
+            if (bigram in self.positive_words) do
+                if (verbose == true) do
+                    print("Found positive bigram: ", bigram)
+                end
+                positive_score += self.positive_words[bigram]
+                text = self.__delete_word_from_text(text, bigram)
+            end
+            if (bigram in self.negative_words) do
+                if (verbose == true) do
+                    print("Found negative bigram: ", bigram)
+                end
+                negative_score += self.negative_words[bigram]
+                text = self.__delete_word_from_text(text, bigram)
+            end
+        end
+
+        // Unigram
+        foreach (unigram in unigrams) do
+            if (unigram in self.positive_words) do
+                if (verbose == true) do
+                    print("Found positive unigram: ", unigram)
+                end
+                positive_score += self.positive_words[unigram]
+                text = self.__delete_word_from_text(text, unigram)
+            end
+            if (unigram in self.negative_words) do
+                if (verbose == true) do
+                    print("Found negative unigram: ", unigram)
+                end
+                negative_score += self.negative_words[unigram]
+                text = self.__delete_word_from_text(text, unigram)
+            end
+        end
+
+        return positive_score dan negative_score
+    end
+end

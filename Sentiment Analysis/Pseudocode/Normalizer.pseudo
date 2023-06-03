@@ -1,0 +1,57 @@
+// Import Library
+from nlp_id.tokenizer import Tokenizer
+
+class Normalizer do
+    Input = stopwords, slang, dan tokenizer
+    Output = Kelas dengan fungsi normalisasi
+
+    constructor(self, stopwords, slang) do
+
+        set self.stopwords = stopwords
+        set self.slang = slang
+        set self.tokenizer = Tokenizer()
+    end
+
+    function __normalize(self, text): List<String> do
+        Input = text yang akan dinormalisasi
+        Output = text yang sudah dinormalisasi dam ditokenisasi
+
+        text = text.lower()
+
+        text = text.replace("&amp;", "dan")
+        text = text.replace("&gt;", "lebih dari")
+        text = text.replace("&lt;", "kurang dari")
+        
+        // Penghilangan URL
+        text = re.sub(r"http\S+", "httpurl", text)
+        
+        // Penghilangan HTML tags
+        text = re.sub(r"<.*?>", " ", text)
+        
+        // Penghilangan hashtags
+        text = re.sub(r"#\w+", " ", text)
+        
+        // Pengantian @mentions dengan "user"
+        text = re.sub(r"@\w+", "user", text)
+
+        // Penghilangan non-letter characters
+        text = re.sub("[^a-zA-z]", " ", text)
+
+        // Penghilangan spasi
+        text = re.sub(" +", " ", text)
+        text = text.strip()
+
+        set result = []
+
+        set tokens = self.tokenizer.tokenize(text)
+        for token in tokens do
+            if token not in self.stopwords do
+                if token in self.slang do
+                    token = self.slang[token]
+                end
+                result.append(token)
+            end
+        end
+        return list berisi kata-kata yang sudah dinormalisasi dan ditokenisasi
+    end
+end

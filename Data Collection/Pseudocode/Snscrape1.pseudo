@@ -1,0 +1,57 @@
+function GetTweets(): DataFrame do
+    Input = None
+    Output = Dataframe yang berisi data tweet
+
+    set MAX_TWEETS = 1000000
+    set COLUMN_NAME = ["UserID","User","Location","verified","Date_Created","Follows_Count","Friends_Count", 
+                       "Retweet_Count","Language","Date_Tweet","Number_of_Likes","Source_of_Tweet",
+                       "Tweet_Id","Tweet","Hashtags","Conversation_Id","In_reply_To","Latitude","Longitude","Place"]
+
+    // set COLUMN_NAME = Nama Kolom yang akan dijadikan sebagai output
+
+    set DF = pd.DataFrame(columns = COLUMN_NAME)
+
+    set KEYWORDS =  "#Pilpres2019 OR #DebatPilpres2019 OR #Pemilu2019 OR #BeraniPilih02 OR #JokowiMenangTotalDebat OR #DebatPintarJokowi OR #PrabowoMenangDebat OR #DebatKeduaPilpres2019 OR #Debat02PrabowoMenang OR #DebatCapres OR #PrabowoSandi OR #01JokowiLagi OR #2019PilihJokowi OR #2019GantiPresiden OR #01IndonesiaMaju OR #2019TetapJokowi OR #JokowiLagi OR #2019PrabowoSandi"
+    // set KEYWORDS = Kata Kunci yang akan dijadikan sebagai input
+
+    set DATE = "since:2018-09-01 until:2019-05-31 min_faves:1 exclude:retweets"
+    // set DATE = Tanggal yang akan dijadikan sebagai input
+
+    try {
+        // enumerasi dari tweets yang didapatkan
+        for (i,tweet) in enumerate(snstwitter.TwitterSearchScraper(KEYWORDS + ' ' + DATE)).get_items() do
+            if (i > MAX_TWEETS) do
+                break
+            end
+            DF.loc[] = [
+                tweet.user.id,
+                tweet.user.username,
+                tweet.user.location,
+                tweet.user.verified,
+                tweet.user.created,
+                tweet.user.followersCount,
+                tweet.user.friendsCount,
+                tweet.retweetCount,
+                tweet.lang,
+                tweet.date,
+                tweet.likeCount,
+                tweet.sourceLabel,
+                tweet.id,
+                tweet.content,
+                tweet.hashtags,
+                tweet.conversationId,
+                tweet.inReplyToUser,
+                tweet.coordinates.latitude if tweet.coordinates != None else None,
+                tweet.coordinates.longitude if tweet.coordinates != None else None,
+                tweet.Place.fullName if tweet.place != None else None
+            ]     
+            // DF.loc[] = [
+            //     Kolom yang ingin discrape
+            // ]     
+        end
+        return Dataframe yang berisi data tweet
+        
+    } catch(err) {
+        DF.to_csv("Autosave.csv", index=False)   
+    }
+end

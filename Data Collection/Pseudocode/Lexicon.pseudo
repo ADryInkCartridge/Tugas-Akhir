@@ -1,0 +1,54 @@
+// Import
+Import re 
+// re merupakan library regex python
+Import emoji
+// emoji merupakan library emoji https://pypi.org/project/emoji/
+
+
+set REGEX = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+// set REGEX = Regex untuk mencari url dalam string
+
+function find_url(string): List<String> do
+    Input = string yang ingin dicek
+    Output = url yang ditemukan dalam string
+
+    set url = re.findall(REGEX,string)
+    return url pertama yang ditemukan
+end
+
+
+function get_word_count(sample): Dict<String> do
+    Input = sample yang ingin dicari okurensi tiap kata
+    Output = dictionary yang berisi kata dan okurensi kata tersebut    
+
+    set lexicon = {}
+    foreach (i in sample) do
+        // menghapus emoji
+        i = emoji.replace_emoji(i,'').lower()
+        foreach (word in i.split()) do
+            // Menganti Username ke @USER dan URL ke HTTPURL
+            if word[0] == '@' or word == '[username]' then
+                word = '@USER'
+            else if find_url(word) != [] then
+                word = 'HTTPURL'
+            else if word == 'httpurl' or word == '[url]' then
+                word = 'HTTPURL'
+            end
+
+            // menghapus tanda baca
+            word = re.sub(r'[^\w\s]','',word)
+
+            // Jika kata belum ada di lexicon, maka kata tersebut dimasukkan ke lexicon
+            // Jika kata sudah ada di lexicon, maka okurensi kata tersebut ditambah 1
+            if (word != 'HTTPURL' or word != 'USER') and word not in lexicon then
+                lexicon[word] = 1
+            else
+                lexicon[word] += 1
+            end
+        end
+    end
+    return lexicon dengan okurensi kata
+end
+
+
+
