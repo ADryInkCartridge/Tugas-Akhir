@@ -1,0 +1,19 @@
+import math
+from sklearn.metrics import mean_squared_error
+from zoofs import GeneticOptimization
+
+function objective_function(model, train, test) do
+  Input: model, dataset train, dataset test
+  Output: RMSE
+
+  for (kf in cross_validations) do
+      model.fit(train)
+      preds = model.predict(test)
+  end
+  
+  return sqare_root(mean_squared_error(test, preds))
+end
+
+feature_selection = GeneticOptimization(objective_function, n_iterations = 10, population_size=30, minimize=True)
+estimator = RandomForestRegressor(n_estimators=100, max_depth=5, random_state=1, n_jobs=-1)
+feature_selection.fit(estimator, test, train, verbose=True)

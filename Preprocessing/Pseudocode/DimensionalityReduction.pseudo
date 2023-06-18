@@ -1,0 +1,44 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+import umap
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+
+Input = DataFrame dengan kuartil
+Output = Scatterplot data yang telah di reduce dengan PCA, UMAP, LDA, t-SNE
+
+// N_components 2 merupakah hasil dimensi yang diinginkan, 
+
+// t-SNE
+// perplexity merupakan jumlah nearest neighbor yang dipertimbangkan, perplexity yang kecil akan menghasilkan cluster yang lebih terpisah
+
+set X_embedded = TSNE(n_components=2, learning_rate='auto',init='random', perplexity=3, random_state=0).fit_transform(df_minmax)
+df_quartiles['X'] = X_embedded[:,0]
+df_quartiles['Y'] = X_embedded[:,1]
+sns.scatterplot(x='X', y='Y', hue='quartile', data=df_quartiles)
+
+
+// PCA
+set pca = PCA(n_components=2, random_state=0)
+set X_PCA = pca.fit_transform(df_minmax)
+df_quartiles['X_PCA'] = X_PCA[:,0]
+df_quartiles['Y_PCA'] = X_PCA[:,1]
+sns.scatterplot(x='X', y='Y', hue='quartile', data=df_quartiles)
+
+// UMAP
+set Umap = umap.UMAP(random_state=0,n_components=2)
+set embeddingUmap = reducer.fit_transform(df_minmax)
+df_quartiles['X_UMAP'] = embeddingUmap[:,0]
+df_quartiles['Y_UMAP'] = embeddingUmap[:,1]
+
+sns.scatterplot(x='X', y='Y', hue='quartile', data=df_quartiles)
+
+// LDA
+set X_LDA = LDA(n_components=2).fit_transform(df_minmax,df_quartiles['quartiles'].to_list())
+df_quartiles['X_LDA'] = X_LDA[:,0]
+df_quartiles['Y_LDA'] = X_LDA[:,1]
+
+sns.scatterplot(x='X', y='Y', hue='quartile', data=df_quartiles)
+
+
+

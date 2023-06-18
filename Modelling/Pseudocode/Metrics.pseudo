@@ -1,0 +1,16 @@
+import math
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import r2_score
+
+function calculate_error_rate(model_name<String>, predictions<List<Int>>, values<List<Int>>) do
+
+    Input = nama model, prediksi, nilai aktual
+    Output = Nilai RMSE, MAE, R2 yang dihasilkan
+
+    rmse = math.sqrt(mean_squared_error(values, predictions))
+    mae = mean_absolute_error(values, predictions)
+    r2 = r2_score(values, predictions)
+
+    return nama model, nilai rmse, nilai mae, nilai r2
+end

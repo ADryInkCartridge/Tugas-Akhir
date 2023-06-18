@@ -1,0 +1,16 @@
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
+// Pengecekan value yang kosong pada dataset
+df = df.replace('', np.nan)
+
+// menghitung jumlah data yang kosong
+nan_values = df[df.isna().any(axis=1)]
+
+// Drop kolom yang tidak digunakan
+df = df.drop(['Kota','Paslon 1','Paslon 2','Total'],axis=1)
+
+// Normalisasi data
+scaler = MinMaxScaler()
+df_minmax = pd.DataFrame(scaler.fit_transform(df.values), columns=df.columns, index=df.index)
+

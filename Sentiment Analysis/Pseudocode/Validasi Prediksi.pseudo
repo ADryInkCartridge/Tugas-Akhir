@@ -2,7 +2,7 @@
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
-function Validasi_Barasa_Inset(positive, negative, label, type): None do
+function Validasi_Barasa_Inset(positive <List<Int>>, negative <List<Int>>, label<List<Int>>, type<String>): None do
     Input = List positive dan negative dari hasil prediksi dan label dari data test
     Output = Confusion Matrix dan Classification Report
 
@@ -27,7 +27,7 @@ function Validasi_Barasa_Inset(positive, negative, label, type): None do
     print(confusion_matrix(label, preds))
 end
 
-function Validasi_IndoBertTweet(preds, label): None do
+function Validasi_IndoBertTweet(preds<List<Int>>, label<List<Int>>): None do
     Input = prediksi dari indoBertTweet dan label dari data test
     Output = Confusion Matrix dan Classification Report
 
@@ -38,3 +38,4 @@ function Validasi_IndoBertTweet(preds, label): None do
     print(confusion_matrix(label, preds))
 
 end
+

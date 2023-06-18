@@ -86,7 +86,7 @@ class InSet do
             print_n_grams(unigrams, bigrams, trigrams)
         end
 
-        return string dari unigram, bigram, trigram
+        return string dari unigram, bigram, trigram, text
     end
         
     function calculate_inset_score(self, text): (Int, Int) do
@@ -151,6 +151,94 @@ class InSet do
                 end
                 negative_score += self.negative_words[unigram]
                 text = self.__delete_word_from_text(text, unigram)
+            end
+        end
+
+        return positive_score dan negative_score
+    end
+end
+
+
+// Shorter Pseudocode
+
+class InSet do
+    function __calculate_n_grams(self, text<String> = None): (String, String, String) do
+        Input = Text yang akan dihitung n-gramnya
+        Output = Unigram, Bigram, Trigram dari text
+
+        if (text != None) do
+            __delete_word_from_text(text, words)
+        end
+
+        set unigrams = ngrams(text.split(), 1)
+        set bigrams = ngrams(text.split(), 2)
+        set trigrams = ngrams(text.split(), 3)
+
+        set joined_unigrams = []
+        foreach (unigram in unigrams) do
+            set joined_unigrams.append(" ".join(unigram))
+        end
+
+        set joined_bigrams = []
+        foreach (bigram in bigrams) do
+            set joined_bigrams.append(" ".join(bigram))
+        end
+
+        set joined_trigrams = []
+        foreach (trigram in trigrams) do
+            set joined_trigrams.append(" ".join(trigram))
+        end
+        
+        return list string dari unigram, bigram, trigram
+    end
+
+        
+    function calculate_inset_score(self, text): (Int, Int) do
+        Input = Text yang akan dihitung sentimennya
+        Output = Skor positif, skor negatif dari text
+
+        set unigrams, bigrams, trigrams = self.__calculate_n_grams(text)
+        set positive_score = 0
+        set negative_score = 0
+
+        // Looping untuk menghitung nilai sentimen dari n-grams
+        // Pencarian kata dilakukan dari Trigram -> Bigram -> Unigram, jika ditemukan maka kata akan dihapus dari kalimat
+
+        // Trigram
+        foreach (trigram in trigrams) do
+            if (trigram in self.positive_words) do
+                positive_score += self.positive_words[trigram]
+                text = self.__calculate_n_grams(text, trigram)
+            end
+            if (trigram in self.negative_words) do
+                negative_score += self.negative_words[trigram]
+                text = self.__calculate_n_grams(text, trigram)
+            end
+        end
+
+
+        // Bigram
+        foreach (bigram in bigrams) do
+            if (bigram in self.positive_words) do
+                positive_score += self.positive_words[bigram]
+                text = self.__calculate_n_grams(text, bigram)
+            end
+            if (bigram in self.negative_words) do
+                negative_score += self.negative_words[bigram]
+                text = self.__calculate_n_grams(text, bigram)
+            end
+        end
+
+        // Unigram
+        foreach (unigram in unigrams) do
+            if (unigram in self.positive_words) do
+                positive_score += self.positive_words[unigram]
+                text = self.__calculate_n_grams(text, unigram)
+            end
+            if (unigram in self.negative_words) do
+                if (verbose == true) do
+                negative_score += self.negative_words[unigram]
+                text = self.__calculate_n_grams(text, unigram)
             end
         end
 

@@ -30,7 +30,7 @@ class SentiSynset do
     end
 end
 
-class BarasaSentiwordNet do
+class BarasaSentiWordNet do
     constructor(self, barasa) do
         Input = Text barasa yang telah diread per line
         Output = CustomSentiwordNet
@@ -92,6 +92,46 @@ class BarasaSentiwordNet do
     end
 
     function __calculate_sentiment_score(self, tokens): (List<float>,List<float>) do
+        Input = Text yang telah di tokenize
+        Output = List dari positive score dan negative score
+
+        set pos = []
+        set neg = []
+
+        foreach (token in tokens) do
+            if token not in self.lemmas then
+                if token not in self.not_found then
+                    self.not_found[token] = 1
+                else
+                    self.not_found[token] += 1
+                continue
+            
+            set synset = self.synsets[self.lemmas[token]]
+            pos.append(synset.pos_score)
+            neg.append(synset.neg_score)
+            end
+
+        return list of pos score, list of neg score
+    end
+end
+
+
+// Shorter Pseudocode
+
+class SentiSynset do
+    constructor(self, pos_score<Float>, neg_score<Float>, synset<String>) do
+        Input = positive score, negative score, dan id synset dari synset tersebut
+        Output = SentiSynset
+
+        set self.pos_score = pos_score
+        set self.neg_score = neg_score
+        set self.obj_score = 1.0 - (pos_score + neg_score)
+        set self.synset = synset
+    end
+end
+
+class BarasaSentiWordNet do
+    function __calculate_sentiment_score(self, tokens<List<String>>): (List<float>,List<float>) do
         Input = Text yang telah di tokenize
         Output = List dari positive score dan negative score
 

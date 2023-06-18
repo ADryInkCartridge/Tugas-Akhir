@@ -68,7 +68,7 @@ function get_tweets(username): List<String> do
 end
 
 
-function concurrent_get_tweets(usernames):List<String> do
+function concurrent_get_tweets(usernames <List<String>>):List<String> do
     Input = List dari username yang ingin diambil tweetnya
     Output = List dari hasil tweet dari semua username
 
@@ -99,3 +99,88 @@ function concurrent_get_tweets(usernames):List<String> do
         return list hasil tweet dari semua username
     end
 end
+
+
+// Shortened Pseudocode
+import snscrape.modules.twitter as snstwitter
+import pandas as pd
+import concurrent.futures
+
+set DATE = Tanggal yang ingin diambil tweetnya dan filternya
+set WORDS = Dictionary dari kata yang ingin di filter
+set MAX_TWEETS = Jumlah maksimal tweet yang ingin diambil per username
+set COLUMNS = Nama kolom yang ingin diambil dari tweetnya
+
+
+function filter_data(text<String>): Boolean do
+    Input = Teks yang ingin di filter
+    Output = True jika ada kata yang terfilter, False jika tidak ada kata yang terfilter
+
+    if (any(word in text for word in FILTERED_WORDS)) do
+        return True
+    end
+    return False
+end
+
+function get_tweets(username <String>): List<String> do
+    Input = username yang ingin diambil tweetnya
+    Output = List of tweets dari username tersebut
+
+    username = username.strip()
+
+    set KEYWORDS = "from: " + username
+    set results = []
+
+    for (i,tweet) in enumerate(snstwitter.TwitterSearchScraper(KEYWORDS + ' ' + DATE)).get_items() do
+        if (filter_data(tweet.content)) do
+            res.append([COLUMNS])
+        end
+        if (i > MAX_TWEETS) do
+            break
+        end
+    end 
+    return list hasil tweet dari username tersebut
+end
+
+
+function concurrent_get_tweets(usernames<List<String>>): List<String> do
+    Input = List dari username yang ingin diambil tweetnya
+    Output = List dari hasil tweet dari semua username
+
+    // Inisialisasi worker untuk mengambil tweet
+    with concurrent.futures.ThreadPoolExecutor() as executor do
+        // Memberikan task untuk mengambil tweet kepada worker
+        set futures = [executor.submit(get_tweets, username) for username in usernames]
+
+        // Mengambil hasil dari worker yang telah selesai
+        foreach (future in concurrent.futures.as_completed(futures)) do
+            set data = future.result()
+            result.extend(data)
+        end
+        return list hasil tweet dari semua username
+end
+
+// EVEN SHORTER
+
+function get_tweets(usernames<List<String>>): List<String> do
+    Input = List dari username yang ingin diambil tweetnya
+    Output = List dari hasil tweet dari semua username
+
+    set results = []
+    
+    for (username in usernames) do
+        for i, tweets in enumerate(snscrape.TwitterSearchScraper("from: " + username + " " + DATE).get_items()) do
+            Jika ditemukan kata yang ingin di filter do
+                results.append(tweets[COLUMNS])
+            end
+            if (i > MAX_TWEETS) do
+                break
+            end
+        end
+        results.extend(tweets)
+    end
+    return list hasil tweet dari semua username
+end
+
+
+

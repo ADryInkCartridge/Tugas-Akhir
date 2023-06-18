@@ -12,7 +12,7 @@ class Normalizer do
         set self.tokenizer = Tokenizer()
     end
 
-    function __normalize(self, text): List<String> do
+    function __normalize(self, text<String>): List<String> do
         Input = text yang akan dinormalisasi
         Output = text yang sudah dinormalisasi dam ditokenisasi
 
@@ -38,6 +38,41 @@ class Normalizer do
         text = re.sub("[^a-zA-z]", " ", text)
 
         // Penghilangan spasi
+        text = re.sub(" +", " ", text)
+        text = text.strip()
+
+        set result = []
+
+        set tokens = self.tokenizer.tokenize(text)
+        for token in tokens do
+            if token not in self.stopwords do
+                if token in self.slang do
+                    token = self.slang[token]
+                end
+                result.append(token)
+            end
+        end
+        return list berisi kata-kata yang sudah dinormalisasi dan ditokenisasi
+    end
+end
+
+
+// Import Library
+from nlp_id.tokenizer import Tokenizer
+
+class Normalizer do
+    function __normalize(self, text<String>): List<String> do
+        Input = text yang akan dinormalisasi
+        Output = text yang sudah dinormalisasi dam ditokenisasi
+
+        text = text.lower()
+
+        text = pengubahan text yang mengandung "&amp;", "&gt;", "&lt;" menjadi "dan", "lebih dari", "kurang dari"
+        text = re.sub(r"http\S+", "httpurl", text)
+        text = re.sub(r"<.*?>", " ", text)
+        text = re.sub(r"#\w+", " ", text)
+        text = re.sub(r"@\w+", "user", text)
+        text = re.sub("[^a-zA-z]", " ", text)
         text = re.sub(" +", " ", text)
         text = text.strip()
 

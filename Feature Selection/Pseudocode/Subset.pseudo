@@ -1,0 +1,40 @@
+import itertools
+
+Input = Kombinasi Fitur
+Output = Hasil Evaluasi Model
+
+Subset = ["Penduduk","Pendidikan","Ekonomi","Sentimen"]
+Fitur = ["Laju Pertumbuhan", "Laki", "Perempuan", "Umur", "Umur Squared","DPT"],
+        ["APM SD", "APM SMP", "APM SMA", "Literate", "TPAK", "pendidikan_SD","pendidikan_SMP", "pendidikan_SMA", "pendidikan_Universitas", "TK", "SD", "SMP", "SMA", "SMK", "Universitas"],
+        ["Pengeluaran Bulanan","Persentase Kemiskinan", "Indeks Pembangunan Manusia"],
+        ["Sentiment", "Weighted Sentiment"]
+
+feature_combinations = []
+
+for r in range(len(Fitur)+1):
+    for combination in itertools.combinations(Fitur, r):
+        feature_combinations.append(combination)
+
+combinations_name = []
+
+for r in range(len(Subset)+1):
+    for combination in itertools.combinations(Subset, r):
+        combinations_name.append(combination)
+
+dfResults = pd.DataFrame()
+
+for i in range(1, len(feature_combinations)):
+  evaluation_DF = dfX[Utils.flatten(list(combinations[i]))]
+  results = Utils.eval_models(evaluation_DF,y,kf)
+  name = ' '.join(list(combinations_name[i]))
+  results["Subset"] = name
+  dfResults = pd.concat([dfResults,results])
+
+// SHORTER VERSION
+Input = Kombinasi Fitur
+Output = Hasil Evaluasi Model
+
+for i in range(1, len(feature_combinations)):
+    evaluation_DF = normalized_df[feature_combinations[i]]
+    results = eval_models(evaluation_DF,y,kf)
+    result.append(results)

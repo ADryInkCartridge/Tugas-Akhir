@@ -10,7 +10,7 @@ from transformers import BertTokenizer, BertModel, BertConfig
 from transformers import AdamW, get_linear_schedule_with_warmup
 import re, emoji
 from datetime import datetime
-
+from torchinfo import summary
 
 
 logger = logging.getLogger(__name__)
@@ -150,6 +150,7 @@ def prediction(dataset, model, args):
     model.eval()
     for j in range(0, len(dataset), args.batch_size):
         src, seg, mask_src = Batch(dataset, j, args.batch_size, args.device).get()
+        # print(summary(model, input_data=(src, seg, mask_src)))
         print("SRC: ", src)
         print("SEG: ", seg)
         print("MASK_SRC: ", mask_src)
@@ -321,15 +322,18 @@ args.vocab_label_size = len(label2id)
 model = Model(args, device)
 best_model = model.state_dict()
 
+
 model.to(args.device)
 model.load_state_dict(torch.load('model_SMSA.pt', map_location=args.device))
-
 print(model)
+
+
 
 text = ["Saya sangat senang", "Saya sangat sedih", "Hari cerah"]
 
 preprocessed = bertdata.preprocess(text)
 print(preprocessed)
+# print(summary(model, input_size=(30, 1, 128, 768)))
 res = prediction(preprocessed, model, args)
 print(res)
 

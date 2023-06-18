@@ -1,0 +1,9 @@
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import RepeatedKFold
+
+Input = DataFrame yang telah dinormalisasi
+Output = Cross Validation dengan 10 fold dan 3 repeat
+
+dfX, dfY = df_minmax.iloc[:, :-1], df_minmax.iloc[:, [-1]]
+kf = RepeatedKFold(n_splits=10, n_repeats = 3 , random_state=1)
+kf.get_n_splits(dfX)

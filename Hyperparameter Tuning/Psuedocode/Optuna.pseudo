@@ -1,0 +1,103 @@
+from catboost import CatBoostRegressor
+from catboost import Pool
+from sklearn.metrics import mean_squared_error
+import optuna
+
+
+function Objective_Function(trial<Optuna.Trial>) do
+    Input: Objek trial dari Optuna
+    Output: Nilai dari fungsi objektif yang akan dioptimasi oleh Optuna
+
+    set COLS = ['Umur', 'Umur Squared', 'APM SMA', 'Pengeluaran Bulanan','Indeks Pembangunan Manusia', 'DPT', 'Sentiment', 'Weighted Sentiment']
+    set data, target = dfX[COLS], y
+
+    set train_x, test_x, train_y, test_y = train_test_split(data, target, test_size=0.2)
+    set train_x, val_x, train_y, val_y = train_test_split(train_x, train_y, test_size=0.25)
+
+    set train_pool = Pool(train_x, train_y)
+    set val_pool = Pool(val_x, val_y)
+    set test_pool = Pool(test_x)
+
+
+    // Parameter yang akan dioptimasi
+
+    params_to_be_optimized = {
+        "objective": trial.suggest_categorical("objective", ["RMSE"]),
+        "colsample_bylevel": trial.suggest_float("colsample_bylevel", 0.01, 0.1, log=True),
+        "depth": trial.suggest_int("depth", 1, 12),
+        "boosting_type": trial.suggest_categorical("boosting_type", ["Ordered", "Plain"]),
+         "bootstrap_type": trial.suggest_categorical(
+            "bootstrap_type", ["Bayesian", "Bernoulli", "MVS"]
+        ),
+        "used_ram_limit": "3gb",
+    }
+
+    // Penambahan paramerter tambahan jika bootstrap_type = Bayesian atau Bernoulli
+    if (params_to_be_optimized['bootstrap_type'] == "Bayesian") do
+        params_to_be_optimized["bagging_temperature"] = trial.suggest_float("bagging_temperature", 0, 10)
+    end else if (params_to_be_optimized['bootstrap_type'] == "Bernoulli") do
+        params_to_be_optimized["subsample"] = trial.suggest_float("subsample", 0.1, 1, log=True)
+    end
+    
+    set model = CatBoostRegressor(**params_to_be_optimized)
+
+    pruning_callback = optuna.integration.CatBoostPruningCallback(trial, "RMSE")
+    model.fit(train_pool, eval_set=val_pool, callbacks=[pruning_callback], verbose=500, early_stopping_rounds=100)
+
+    pruning_callback.check_pruned()
+
+    set preds = model.predict(test_pool)
+    set rmse = mean_squared_error(test_y, preds, squared=False)
+
+    return rmse yang telah dihitung.
+
+end
+
+set study = optuna.create_study(direction="minimize", pruner=optuna.pruners.MedianPruner(n_warmup_steps=10))
+
+study.optimize(Objective_Function, n_trials=100)
+
+trial = study.best_trial
+
+
+// shortened pseudocode
+
+
+function Objective_Function(trial <Optuna.Trial>) do
+    Input = Objek Optuna.Trial
+    Output = Nilai dari fungsi objektif yang akan dioptimasi oleh Optuna
+
+    Set Cols = Kolom hasil seleksi fitur terbaik
+    Train, Val, Test = Split data menjadi 3 bagian
+
+    set params_to_be_optimized = {
+        "objective": trial.suggest_categorical("objective", ["RMSE"]),
+        "colsample_bylevel": trial.suggest_float("colsample_bylevel", 0.01, 0.1, log=True),
+        "depth": trial.suggest_int("depth", 1, 12),
+        "boosting_type": trial.suggest_categorical("boosting_type", ["Ordered", "Plain"]),
+         "bootstrap_type": trial.suggest_categorical(
+            "bootstrap_type", ["Bayesian", "Bernoulli", "MVS"]
+        ),
+    }
+
+    if (params_to_be_optimized is Bayesian) do
+        params_to_be_optimized["bagging_temperature"] = trial.suggest_float("bagging_temperature", 0, 10)
+    end else if (params_to_be_optimized is Bernoulli) do
+        params_to_be_optimized["subsample"] = trial.suggest_float("subsample", 0.1, 1, log=True)
+    end
+
+    set model = CatBoostRegressor(**params_to_be_optimized)
+
+    pruning_callback = optuna.integration.CatBoostPruningCallback(trial, "RMSE")
+    model.fit(train, val)
+    pruning_callback.check_pruned()
+
+    set preds = model.predict(test)
+
+    return rmse yang telah dihitung.
+
+end
+
+set study = optuna.create_study(direction="minimize", pruner=optuna.pruners.MedianPruner(n_warmup_steps=10))
+study.optimize(Objective_Function, n_trials=100)
+trial = study.best_trial

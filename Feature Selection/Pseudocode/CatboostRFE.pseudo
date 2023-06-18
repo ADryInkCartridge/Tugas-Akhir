@@ -1,0 +1,12 @@
+from catboost import CatBoostRegressor
+
+
+model = CatBoostRegressor(eval_metric='RMSE', iterations = 100,random_state = 1)
+
+rfe_dict = regressor.select_features(X = X_train, y = y_train, 
+                                     eval_set = (X_val,y_val), 
+                                     features_for_select = '0-25', 
+                                     num_features_to_select = 10, 
+                                     steps = 5, 
+                                     plot = True 
+                                     )

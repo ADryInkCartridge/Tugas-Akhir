@@ -33,7 +33,6 @@ function get_word_count(sample): Dict<String> do
                 word = 'HTTPURL'
             else if word == 'httpurl' or word == '[url]' then
                 word = 'HTTPURL'
-            end
 
             // menghapus tanda baca
             word = re.sub(r'[^\w\s]','',word)
@@ -46,9 +45,88 @@ function get_word_count(sample): Dict<String> do
                 lexicon[word] += 1
             end
         end
-    end
     return lexicon dengan okurensi kata
 end
 
 
+// Shortened Psuedocode 
 
+import re
+import emoji
+
+function find_url(string<String>): List<String> do
+    Input = string yang ingin dicek
+    Output = url yang ditemukan dalam string
+
+    set url = re.findall(REGEX,string)
+    return url pertama yang ditemukan
+end
+
+
+function get_word_count(sample<DataFrame>): Dict<String> do
+    Input = sample yang ingin dicari okurensi tiap kata
+    Output = dictionary yang berisi kata dan okurensi kata tersebut    
+
+    set lexicon = {}
+    foreach (kalimat in sample) do
+        
+        set kalimat = emoji.replace_emoji(i,'') 
+
+        foreach (kata in kalimat) do
+            
+            if kata[0] == '@' or kata == '[username]' then
+                kata = '@USER'
+            else if find_url(word) != [] then
+                kata = 'HTTPURL'
+            else if word == 'httpurl' or word == '[url]' then
+                kata = 'HTTPURL'
+
+            // menghapus tanda baca
+            kata = re.sub(r'[^\w\s]','',word)
+
+            // Jika kata belum ada di lexicon, maka kata tersebut dimasukkan ke lexicon
+            // Jika kata sudah ada di lexicon, maka okurensi kata tersebut ditambah 1
+            if (word != 'HTTPURL' or word != 'USER') and word not in lexicon then
+                lexicon[word] = 1
+            else
+                lexicon[word] += 1
+            end
+        end
+    return lexicon dengan okurensi kata
+end 
+
+
+// SHORTER PSEUDOCODE
+
+import re
+import emoji
+
+function get_word_count(sample<DataFrame>): Dict<String> do
+    Input = sample yang ingin dicari okurensi tiap kata
+    Output = dictionary yang berisi kata dan okurensi kata tersebut    
+
+    set lexicon = {}
+    foreach (kalimat in sample) do
+        
+        set kalimat = emoji.replace_emoji(i,'') 
+
+        foreach (kata in kalimat) do
+            
+            if kata == Username then
+                kata = '@USER'
+            else if kata == URL then
+                kata = 'HTTPURL'
+            
+                // menghapus tanda baca
+            kata = re.sub(r'[^\w\s]','',word)
+
+            // Jika kata belum ada di lexicon, maka kata tersebut dimasukkan ke lexicon
+            // Jika kata sudah ada di lexicon, maka okurensi kata tersebut ditambah 1
+            if (word != 'HTTPURL' or word != 'USER') and word not in lexicon then
+                lexicon[word] = 1
+            else
+                lexicon[word] += 1
+            end
+        end
+    return lexicon dengan okurensi kata
+end 
