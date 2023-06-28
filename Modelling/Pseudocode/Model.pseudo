@@ -1,1 +1,57 @@
 from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVR
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from xgboost import XGBRegressor
+import lightgbm as lgb  
+from catboost import CatBoostRegressor
+from catboost import Pool
+
+function evaluate_models(dfX<DataFrame>, labels <List<String>>, cross_validations<RepeatedKFold>) do
+  Input = Dataset prediksi yang akan diuji
+  Output = Prediksi dari model-model yang digunakan
+
+  predictions = {
+    'Linear Regression': [],
+    'SVR': [],
+    'Decision Tree': [],
+    'Random Forest': [],
+    'XGBoost': [],
+    'LightGBM': [],
+    'CatBoost': []
+  }
+
+  metrics = {}
+
+
+  for train_split, test_split in cross_validations.split(dfX):
+
+    X_train, X_test = dfX[train_split], dfX[test_split]
+    y_train, y_test = labels[train_split], labels[test_split]
+
+    // Inisialisasi model-model yang digunakan
+    LinearRegression = LinearRegression()
+    SVR = SVR()
+    DecisionTree = DecisionTreeRegressor()
+    RandomForest = RandomForestRegressor()
+    XGBoost = XGBRegressor()
+    LightGBM = lgb.LGBMRegressor()
+    CatBoost = CatBoostRegressor()
+
+    // Pelatihan model-model yang digunakan
+    untuk semua model yang digunakan do
+      model.fit(X_train, y_train)
+    end
+
+    // Prediksi nilai dari model-model yang digunakan
+    untuk semua model yang digunakan do
+      predictions[model].append(model.predict(X_test))
+    end
+    
+  
+  // Menghitung nilai rata-rata dari prediksi model-model yang digunakan
+  for model, preds in predictions.items():
+    metrics[model] = calculate_error_rate(preds, labels)
+
+  return Hasil prediksi dari model-model yang digunakan
+end

@@ -1,0 +1,175 @@
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP, APM SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP, APM SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP, APM SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP
+Indeks Pembangunan Manusia, SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT
+Indeks Pembangunan Manusia, SD, pendidikan_SMA
+Indeks Pembangunan Manusia, SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP, APM SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP
+Indeks Pembangunan Manusia, SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP, APM SMA
+Indeks Pembangunan Manusia
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan
+Indeks Pembangunan Manusia, SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared
+Indeks Pembangunan Manusia, SD, pendidikan_SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK
+Indeks Pembangunan Manusia, SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan
+Indeks Pembangunan Manusia, SD
+Indeks Pembangunan Manusia
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP, APM SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan
+Indeks Pembangunan Manusia
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas
+Indeks Pembangunan Manusia
+Indeks Pembangunan Manusia
+Indeks Pembangunan Manusia, SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP, APM SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA, pendidikan_SMP, APM SMP
+Indeks Pembangunan Manusia, SD, pendidikan_SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment, APM SD, SMA
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment, Weighted Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan
+Indeks Pembangunan Manusia
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP, Sentiment
+Indeks Pembangunan Manusia, SD, pendidikan_SMA, pendidikan_SD, DPT, Persentase Kemiskinan, pendidikan_Universitas, Pengeluaran Bulanan, Literate, Perempuan, Laki, TK, TPAK, Laju Pertumbuhan, Umur, Umur Squared, SMK, SMP
+Indeks Pembangunan Manusia

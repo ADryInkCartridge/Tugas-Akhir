@@ -1,0 +1,19 @@
+from zoofs import ParticleSwarmOptimization
+from zoofs import DragonflyAlgorithm
+from zoofs import GreyWolfOptimization
+from zoofs import HarrisHawksOptimization
+from sklearn.ensemble import RandomForestRegressor
+
+
+PSO = ParticleSwarmOptimization(objective_function, n_iteration=10, population_size= 30, minimize=True)
+DFA = DragonflyAlgorithm(objective_function, n_iterations = 10, population_size=30, minimize=True)
+GWO = GreyWolfOptimization(objective_function, n_iterations = 10, population_size=30, minimize=True)
+HHO = HarrisHawkOptimization(objective_function, n_iterations = 10, population_size=30, minimize=True)
+
+estimator = RandomForestRegressor(n_estimators=100, max_depth=5, random_state=1, n_jobs=-1)
+
+PSO.fit(estimator, test, train, verbose=True)
+DFA.fit(estimator, test, train, verbose=True)
+GWO.fit(estimator, test, train, verbose=True)
+HHO.fit(estimator, test, train, verbose=True)
+

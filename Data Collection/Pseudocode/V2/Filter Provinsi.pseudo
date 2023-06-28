@@ -1,0 +1,35 @@
+// File python berisi dictionary seluruh kabupaten kota di Indonesia
+import Kabupaten_Kota as KK
+
+function check_provinsi(locations): List<String> do
+    Input = list lokasi user
+    Output = list provinsi yang telah dinormalisasi
+
+    set res = []
+
+    foreach (location in locations) do
+        set flag = false
+        if (location == '') do
+            res.append("Unknown")
+        end else do
+            foreach (provinsi in KK.provinsi) do
+                if (provinsi in str(location).lower()) do
+                    res.append(provinsi)
+                    flag = true
+                    break
+                end
+                foreach (kabupaten_kota in KK.kabupaten_kota[provinsi]) do
+                    if (kabupaten_kota in str(location).lower()) do
+                        res.append(kabupaten_kota)
+                        flag = true
+                        break
+                    end
+                end
+            end
+            if (flag == false) do
+                res.append("Unknown")
+            end
+            return list dari provinsi yang dinormalisasi
+        end
+    end
+end

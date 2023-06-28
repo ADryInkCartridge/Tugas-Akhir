@@ -1,0 +1,40 @@
+function get_tweets(usernames<List<String>>): List<String> do
+    Input = List dari username yang ingin diambil tweetnya
+    Output = List dari hasil tweet dari semua username
+
+    set results = []
+    
+    for (username in usernames) do
+        for i, tweets in enumerate(snscrape.TwitterSearchScraper("from: " + username + " " + DATE).get_items()) do
+            Jika ditemukan kata yang ingin di filter do
+                results.append(tweets[COLUMNS])
+            end
+            if (i > MAX_TWEETS) do
+                break
+            end
+        end
+        results.extend(tweets)
+    end
+    return list hasil tweet dari semua username
+end
+
+function get_tweets(usernames<List<String>>): List<String> do
+    Input = List dari username yang ingin diambil tweetnya
+    Output = List dari hasil tweet dari semua username
+
+    set results = []
+    
+    untuk semua username dari list username do
+        untuk semua tweet dari username do
+            if ditemukan kata yang terkait dengan Pemilu then
+                results.append(tweets[COLUMNS])
+            if jumlah tweet yang diambil sudah melebihi MAX_TWEETS then
+                break
+        end
+        results.extend(tweets)
+    end
+    return list hasil tweet dari semua username
+end
+
+
+

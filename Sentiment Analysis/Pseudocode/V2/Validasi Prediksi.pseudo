@@ -1,0 +1,41 @@
+// Import Library
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+
+function Validasi_Barasa_Inset(positive <List<Int>>, negative <List<Int>>, label<List<Int>>, type<String>): None do
+    Input = List positive dan negative dari hasil prediksi dan label dari data test
+    Output = Confusion Matrix dan Classification Report
+
+    if (type == "Barasa") do
+        set threshold = 0.25
+    end else if (type == "Inset") do
+        set threshold = 10
+    end
+    set preds = []
+    for (i = 0, len(positive), 1) do
+        set delta = positive[i] - negative[i]
+        if (delta > threshold) do
+            preds.append(3)
+        end else if(delta < -threshold) do
+            preds.append(1)
+        end else do
+            preds.append(2)
+        end
+    end
+
+    print(classification_report(label, preds, target_names=['negative', 'neutral', 'positive']))
+    print(confusion_matrix(label, preds))
+end
+
+function Validasi_IndoBertTweet(preds<List<Int>>, label<List<Int>>): None do
+    Input = prediksi dari indoBertTweet dan label dari data test
+    Output = Confusion Matrix dan Classification Report
+
+    // preds ditambah 2 karena label dari indoBertTweet adalah -1, 0, 1 sedangkan label dari data test adalah 1, 2, 3
+    set preds = [res + 2 for res in preds]
+
+    print(classification_report(label, preds, target_names=['negative', 'neutral', 'positive']))
+    print(confusion_matrix(label, preds))
+
+end
+

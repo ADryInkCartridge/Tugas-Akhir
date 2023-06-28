@@ -1,0 +1,23 @@
+function get_word_count(sample<DataFrame>): Dict<String> do
+    Input = sample yang ingin dicari okurensi tiap kata
+    Output = dictionary yang berisi kata dan okurensi kata tersebut    
+
+    set lexicon = {} // dictionary yang berisi kata dan okurensi kata tersebut
+
+    Untuk seluruh tweet dalam sampel do
+        set tweet = penghilangan emoji pada tweet
+        untuk setiap kata dalam tweet do
+            if kata == Username then
+                kata = '@USER'
+            else if kata == URL then
+                kata = 'HTTPURL'
+        end
+        set kata = penghilangan tanda baca pada kata
+        if kata ditemukan dalam lexicon then
+            okurensi kata tersebut ditambah 1
+        else if kata tidak ditemukan dalam lexicon then
+            kata dimasukkan ke lexicon dengan okurensi 1
+    end
+
+    return lexicon dengan okurensi kata
+end 

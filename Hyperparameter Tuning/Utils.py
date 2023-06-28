@@ -4,7 +4,7 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import r2_score
 import pandas as pd
 import numpy as np
-import time
+
 
 def r_to_py():
     string = input("Enter a string: ")
@@ -135,7 +135,6 @@ def evaluate_catboost(dfX,y,kf):
       train_pool = Pool(data=X_train, label=y_train)
       test_pool = Pool(data=X_test, label=y_test)
 
-      
       cbr.fit(train_pool, verbose=False)
       cbr_pred = cbr.predict(test_pool)
       preds.append(cbr_pred)
@@ -220,12 +219,8 @@ def evaluate_svr(dfX,y,kf):
   svr_df = pd.DataFrame({'Prediction':flatten(preds),'Actual Values':flatten(vals)})
   return error_rate("SVR",svr_df['Prediction'],svr_df['Actual Values'])
 
-def eval_models(dfX,y,kf, verobose = False):
+def eval_models(dfX,y,kf):
   evals = []
-  time = []
-  # calculate runtime using timeit module while also returning the evaluation metrics
-
-
   evals.append(evaluate_linreg(dfX,y,kf))  
   evals.append(evaluate_svr(dfX,y,kf))  
   evals.append(evaluate_dt(dfX,y,kf))  
@@ -234,53 +229,6 @@ def eval_models(dfX,y,kf, verobose = False):
   evals.append(evaluate_catboost(dfX,y,kf))  
   evals.append(evaluate_lightgbm(dfX,y,kf))  
   dfEval = pd.DataFrame(evals,columns=["Method","RSME","MAE","R2"])
-  return dfEval
-
-def timed_eval_models(dfX,y,kf, verobose = False):
-  evals = []
-  times = []
-  # calculate runtime using timeit module while also returning the evaluation metrics
-
-  start_time = time.time()
-
-  evals.append(evaluate_linreg(dfX,y,kf))  
-  # print current runtime
-  curr_time = time.time()
-  times.append(curr_time - start_time)
-  start_time = curr_time
-  
-  evals.append(evaluate_svr(dfX,y,kf))  
-  curr_time = time.time()
-  times.append(curr_time - start_time)
-  start_time = curr_time
-
-  evals.append(evaluate_dt(dfX,y,kf))  
-  curr_time = time.time()
-  times.append((curr_time - start_time))
-  start_time = curr_time
-
-  evals.append(evaluate_rf(dfX,y,kf))  
-  curr_time = time.time()
-  times.append((curr_time - start_time))
-  start_time = curr_time
-
-  evals.append(evaluate_xgboost(dfX,y,kf))  
-  curr_time = time.time()
-  times.append((curr_time - start_time))
-  start_time = curr_time
-
-  evals.append(evaluate_catboost(dfX,y,kf))  
-  curr_time = time.time()
-  times.append((curr_time - start_time))
-  start_time = curr_time
-
-  evals.append(evaluate_lightgbm(dfX,y,kf))  
-  curr_time = time.time()
-  times.append((curr_time - start_time))
-  start_time = curr_time
-  
-  dfEval = pd.DataFrame(evals,columns=["Method","RSME","MAE","R2"])
-  dfEval["Time"] = times
   return dfEval
 
 def compare_models(x1,x2,y,kf):
@@ -292,24 +240,3 @@ def compare_models(x1,x2,y,kf):
     dfDiff["R2 Diff"] = dfEval_1["R2"] - dfEval_2["R2"]
     dfDiff.drop(["Method","RSME","MAE","R2"],axis=1,inplace=True)
     return pd.concat([dfEval_1,dfEval_2,dfDiff],axis=1)
-
-def test():
-  import pandas as pd 
-  from sklearn.preprocessing import MinMaxScaler
-  from sklearn.model_selection import train_test_split
-  from sklearn.model_selection import RepeatedKFold
-
-  df = pd.read_csv('Modelling/Data/Dataset.csv', decimal =".", thousands=",")
-  df = df.drop(['Kota','Paslon 1','Paslon 2','Total'],axis=1)
-
-  scaler = MinMaxScaler()
-
-  df_minmax = pd.DataFrame(scaler.fit_transform(df.values), columns=df.columns, index=df.index)
-  dfX, dfY = df_minmax.iloc[:, :-1], df_minmax.iloc[:, [-1]]
-  kf = RepeatedKFold(n_splits=10, n_repeats = 3 , random_state=1)
-  kf.get_n_splits(dfX)
-  y = df['Partisipasi']
-  print(timed_eval_models(dfX,y,kf))
-
-# test()
-

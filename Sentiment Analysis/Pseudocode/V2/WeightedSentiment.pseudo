@@ -1,0 +1,29 @@
+def calculate_weighted_sentiment(row):
+    if row['label'] == 1:
+        likes = row['likeCount'] * 0.5
+        retweets = row['retweetCount']
+        return likes + retweets
+    elif row['label'] == -1:
+        likes = row['likeCount'] * 0.5
+        retweets = row['retweetCount']
+        return -likes - retweets
+    else:
+        return 0
+    
+df.apply(calculate_weighted_sentiment, axis=1)
+
+function calculate_weighted_sentiment(row) do
+    Input: Row dari dataframe
+    Output: Nilai weighted sentiment
+
+    if row['label'] == 1 or -1 then
+        likes = row['likeCount'] * 0.5 * row['label']
+        retweets = row['retweetCount'] * row['label']
+        return likes + retweets
+    else do
+        return 0
+    end
+end
+
+df.apply(calculate_weighted_sentiment, axis=1)
+df = df.groupby(["Province"]).mean()

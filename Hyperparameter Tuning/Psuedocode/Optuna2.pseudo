@@ -1,0 +1,96 @@
+from catboost import CatBoostRegressor
+from catboost import Pool
+from sklearn.metrics import mean_squared_error
+import optuna
+
+function Objective_Function(trial <Optuna.Trial>) do
+    set model = CatBoostRegressor(
+        learning_rate=trial.suggest_float("learning_rate", 1e-2, 3e-2, log=True),
+        depth=trial.suggest_int("depth", 4, 6),
+        l2_leaf_reg=trial.suggest_float("l2_leaf_reg", 1e-8, 2e-06, log=True),
+        bootstrap_type=trial.suggest_categorical("bootstrap_type", ["Bayesian"]),
+        random_strength=trial.suggest_float("random_strength", 8, 10.0, log=True),
+        bagging_temperature=trial.suggest_float("bagging_temperature", 3, 5.0),
+        od_type=trial.suggest_categorical("od_type", ["Iter"]),
+        od_wait=trial.suggest_int("od_wait", 40, 50),
+        verbose=False
+    )
+    set preds = []
+    set vals = []
+
+    for (train_index, test_index) in kf.split(Dataset) do
+        set train_x, train_y = Dataset.iloc[train_index], y.iloc[train_index]
+        set test_x, test_y = Dataset.iloc[test_index], y.iloc[test_index]
+
+        set train_pool = Pool(data=train_x, label=train_y)
+        set test_pool = Pool(data=test_x, label=test_y)
+
+        model.fit(train_pool, verbose=False)
+        set pred = model.predict(test_pool)
+        preds.append(pred)
+        vals.append(test_y)
+    end
+    rmse = math.sqrt(mean_squared_error(vals,preds))
+    return hasil rmse yang telah dihitung.
+end
+
+for train_index, test_index in kf.split(dfX):
+    train_x, train_y = dfX.iloc[train_index], y.iloc[train_index]
+    test_x, test_y = dfX.iloc[test_index], y.iloc[test_index]
+
+    train_pool = Pool(data=train_x, label=train_y)
+    test_pool = Pool(data=test_x, label=test_y)
+
+    model.fit(train_pool, verbose=False)
+    pred = model.predict(test_pool)
+    preds.append(pred)
+    vals.append(test_y) 
+
+results = utils.error_rate("Catboost",flatten(preds),flatten(vals))
+print(results)
+rmse = math.sqrt(mean_squared_error(flatten(vals),flatten(preds)))
+return rmse
+
+
+
+
+
+
+function Objective_Function(trial <Optuna.Trial>) do
+    Input = Objek Optuna.Trial
+    Output = Nilai dari fungsi objektif yang akan dioptimasi oleh Optuna
+
+    Set Cols = Kolom hasil seleksi fitur terbaik
+    Train, Val, Test = Split data menjadi 3 bagian
+
+    set params_to_be_optimized = {
+        "objective": trial.suggest_categorical("objective", ["RMSE"]),
+        "colsample_bylevel": trial.suggest_float("colsample_bylevel", 0.01, 0.1, log=True),
+        "depth": trial.suggest_int("depth", 1, 12),
+        "boosting_type": trial.suggest_categorical("boosting_type", ["Ordered", "Plain"]),
+         "bootstrap_type": trial.suggest_categorical(
+            "bootstrap_type", ["Bayesian", "Bernoulli", "MVS"]
+        ),
+    }
+
+    if (params_to_be_optimized is Bayesian) do
+        params_to_be_optimized["bagging_temperature"] = trial.suggest_float("bagging_temperature", 0, 10)
+    end else if (params_to_be_optimized is Bernoulli) do
+        params_to_be_optimized["subsample"] = trial.suggest_float("subsample", 0.1, 1, log=True)
+    end
+
+    set model = CatBoostRegressor(**params_to_be_optimized)
+
+    pruning_callback = optuna.integration.CatBoostPruningCallback(trial, "RMSE")
+    model.fit(train, val)
+    pruning_callback.check_pruned()
+
+    set preds = model.predict(test)
+
+    return rmse yang telah dihitung.
+
+end
+
+set study = optuna.create_study(direction="minimize", pruner=optuna.pruners.MedianPruner(n_warmup_steps=10))
+study.optimize(Objective_Function, n_trials=100)
+trial = study.best_trial

@@ -1,0 +1,650 @@
+// Import library
+import json, glob, os, random
+import argparse
+import logging
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn as nn
+from sklearn.metrics import f1_score, accuracy_score
+from transformers import BertTokenizer, BertModel, BertConfig
+from transformers import AdamW, get_linear_schedule_with_warmup
+import re, emoji
+from datetime import datetime
+
+
+function find_url(string): List<String> do
+    Input = string yang akan di cari url nya
+    Output = list dari url yang ada di string
+
+    // set regex = REGEX yang mengandung url
+    set regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+    set url = re.findall(regex,string)
+
+    return list dari url
+end
+
+
+
+function preprocess_tweet(tweet): String do
+    Input = tweet yang akan di preprocess
+    Output = string twwet yang sudah di preprocess
+
+    tweet = emoji.demojize(tweet)
+    set new_tweet = []
+    foreach (word in tweet.spli()) do
+        if (word[0] == '@' or word == "[username]") do
+            new_tweet.append("@USER")
+        end else if (find_url(word) != []) do
+            new_tweet.append("HTTPURL")
+        end else if (word == "httpurl" or word == "[url]") do
+            new_tweet.append("HTTPURL")
+        end else do
+            new_tweet.append(word)
+        end
+    end
+    return hasil new_tweet yang telah di join
+end
+
+
+
+function set_seed(seed) do
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if (torch.cuda.is_available()) do
+        torch.cuda.manual_seed_all(seed)
+    end
+end
+
+
+
+class BertTokenizer do
+    constructor(self, model, max_tokens) do
+        set self.tokenizer = BertTokenizer.from_pretrained(model)
+        set self.sep_token = "[SEP]"
+        set self.cls_token = "[CLS]"
+        set self.pad_token = "[PAD]"
+        set self.sep_vid = self.tokenizer.vocab[self.sep_token]
+        set self.cls_vid = self.tokenizer.vocab[self.cls_token]
+        set self.pad_vid = self.tokenizer.vocab[self.pad_token]
+        set self.max_tokens = max_tokens
+    end
+
+    function preprocess_one(self, text): (List<Int>, List<Int>) do
+        Input = text yang akan di preprocess
+        Output = representasi token dan segment dari text
+
+        set text = preprocess_tweet(text)
+        // Menambahkan token CLS dan SEP pada text
+        set tokens = self.cls_token + self.tokenizer.tokenize(text) + self.sep_token
+        // Mengubah token menjadi token id
+        set token_ids = self.tokenizer.convert_tokens_to_ids(tokens)
+
+        // Jika token lebih dari max token maka akan dipotong
+        if (len(token_ids) > self.max_tokens) do
+            token_ids = token_ids[:self.max_tokens]
+            token_ids[-1] = self.sep_vid
+        end else do
+            // Jika token kurang dari max token maka akan di tambahkan token pad
+            token_ids += [self.pad_vid] * (self.max_tokens - len(token_ids))
+        end
+        // Membuat segment id, 0 semua karena tidak ada segment
+        set segment_ids = [0] * len(token_ids)
+        assert len(token_ids) == len(segment_ids)
+
+        return representasi token dan segment dari text
+    end
+
+    function preprocess(self, texts): List<List<Int>> do
+        Input = list dari text yang akan di preprocess
+        Output = list representasi token dan segment dari text
+
+        set result = []
+        foreach (text in texts) do
+            result.append(self.preprocess_one(text))
+        end
+    end
+end
+
+
+
+class Batch do
+    constructor(self, data, index, batch_size, device) do
+        set current_batch = data[index:index+batch_size]
+
+        // Membuat representasi token, segment, label, dan mask dari data
+        set texts = torch.tensor([x[0] for x in current_batch])
+        set segments = torch.tensor([x[1] for x in current_batch])
+        set labels = torch.tensor([x[2] for x in current_batch])
+        set text_masks = 0 + (texts != 0)
+
+        // Mengirim data ke device
+        set self.texts = texts.to(device)
+        set self.segments = segments.to(device)
+        set self.labels = labels.to(device)
+        set self.text_masks = text_masks.to(device)
+
+    end
+
+    function __get_batch(self): (List<Int>, List<Int>, List<Int>, List<Int>) do
+        Input = None
+        Output = Data batch tersebut
+
+        return self.texts, self.segments, self.labels, self.text_masks
+    end
+end
+
+
+
+class Model extends nnModule do
+    constructor(self,args ,device) do
+        super(Model, self).__init__()
+        set self.args = args
+        set self.device = device
+
+        set self.tokenizer = BertTokenizer(args.model, do_lower_case=True)
+        set self.bert = BertModel.from_pretrained(args.model)
+
+        // Dropout untuk menghindari overfitting
+        set self.dropout = nn.Dropout(args.dropout)
+        // Linear untuk mengubah representasi token menjadi label
+        set self.linear = nn.Linear(self.bert.config.hidden_size, args.label_size)
+        // Untuk menghitung loss
+        set self.loss = nn.CrossEntropyLoss(ignore_index = args.label_size, reduction='sum')
+    end
+
+    function __forward_propagation(self, text, segment, mask): List<Float> do
+        Input = representasi token, segment, dan mask dari text
+        Output = hasil prediksi dari model
+
+        set top_vec, _ = self.bert(input_ids=text, token_type_ids=segment, attention_mask=mask, return_dict=False)
+        set top_vec = self.dropout(top_vec)
+
+        // Mengubah mengalikan representasi token dengan dengan mask agar hanya kata - kata yang ada yang dihitung
+        set top_vec *= mask.unsqueeze(-1).float()
+        // Menghitung rata - rata dari representasi token, dan dinormalisasi dengan panjang mask
+        set top_vec = torch.sum(top_vec, dim=1) / mask.sum(dim = -1).float().unsqueeze(-1)
+        // Mengubah representasi token menjadi label
+        set result = self.linear(top_vec).squeeze()        
+        return hasil prediksi dari model
+    end
+
+    function __get_loss(self, text, segment, mask, label): Float do
+        Input = representasi token, segment, mask, dan label dari text
+        Output = hasil loss dari model
+
+        set result = self.__forward_propagation(text, segment, mask)
+        // Menghitung loss dari hasil prediksi dengan label, view digunakan untuk mengubah bentuk hasil prediksi dan label jika perlu
+        set loss = self.loss(result.view(-1, self.args.label_size), label.view(-1))
+        return hasil loss dari model
+    end
+
+    function __predict(self, text, segment, mask): List<Float> do
+        Input = representasi token, segment, dan mask dari text
+        Output = hasil prediksi dari model
+
+        set result = self.__forward_propagation(text, segment, mask)
+        // Mengambil index dari hasil prediksi dengan nilai tertinggi
+        set result = torch.argmax(result, dim=-1).data.cpu().numpy().tolist()
+        return hasil prediksi dari model
+    end
+end
+
+
+
+function predict(dataset, model, args): (List<Int>, Float) do
+    Input = dataset, model, dan args yang akan digunakan untuk prediksi
+    Output = hasil prediksi dari model dengan f1_score 
+
+    set predictions = []
+    set labels = []
+
+    // Mengubah model menjadi mode eval
+    model.eval()
+
+    for (i = 0, len(dataset), args.batch_size) do
+        text, segment, label, mask = Batch(dataset, i, args.batch_size, args.device).__get_batch()
+        set predictions += model.__predict(text, segment, mask)
+        set labels += label.data.cpu().numpy().tolist()
+    end
+    set f1 = f1_score(labels, predictions, average='macro')
+    return hasil prediksi dari model dengan f1_score
+end
+
+
+
+function label2id(labels): (Dict<(String,Int)> , Dict<(Int,String)>) do
+    Input = list dari label
+    Output = representasi label dalam bentuk id
+
+    set label2id = {}
+    set id2label = {}
+    set count = 0
+
+    foreach (word in np.unique(labels)) do
+        set label2id[word] = count 
+        set id2label[count] = word
+        set count += 1
+    end
+
+    return representasi label dalam bentuk id dan id dalam bentuk label
+end
+
+
+
+function convert_label2id(label2id, labels): List<Int> do
+    Input = representasi label dalam bentuk id dan list dari label
+    Output = representasi label dalam bentuk id
+
+    set result = []
+    foreach (label in labels) do
+        result.append(label2id[label])
+    end
+    return representasi label dalam bentuk id
+end
+
+
+
+function save_predictions(predictions, id2label): None do
+    Input = hasil prediksi dari model dan id dalam bentuk label
+    Output = None
+
+    set df = pd.DataFrame(predictions, columns=['predictions'])
+    df['predictions'] = df['predictions'].apply(lambda x: id2label[x])
+    df.to_csv('predictions.csv', index=False)
+
+end
+
+
+
+function train(args): Model.state_dict do
+    Input = args yang akan digunakan untuk training
+    Output = model yang sudah di training
+
+    // Setup CUDA, Seed, dan Tokenizer
+    set device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    set_seed(args.seed)
+    set tokenizer = BertTokenizer(args.model, args.max_tokens)
+
+    // Load data
+    set train_dataset = pd.read_csv(args.train_file, sep='\t', header=None)
+    set validation_dataset = pd.read_csv(args.validation_file, sep='\t', header=None)
+    set test_dataset = pd.read_csv(args.test_file, sep='\t', header=None)
+
+    // Split data menjadi text, label
+    set train_x = train_dataset["Text"].values
+    set train_y = train_dataset["Label"].values
+
+    set validation_x = validation_dataset["Text"].values
+    set validation_y = validation_dataset["Label"].values
+
+    set test_x = test_dataset["Text"].values
+    set test_y = test_dataset["Label"].values
+
+    // Mengubah label menjadi id
+    set label2id, id2label = label2id(train_y)
+    set train_y = convert_label2id(label2id, train_y)
+    set validation_y = convert_label2id(label2id, validation_y)
+    set test_y = convert_label2id(label2id, test_y)
+    set args.label_size = len(label2id)
+
+    // Preprocess data
+    set train_dataset = tokenzer.preprocess(train_x, train_y)
+    set validation_dataset = tokenzer.preprocess(validation_x, validation_y)
+    set test_dataset = tokenzer.preprocess(test_x, test_y)
+
+    // Load model
+    set model = Model(args, device)
+    set model.to(device)
+
+    // Siapkan optimizer dan scheduler
+    set no_decay = ["bias", "LayerNorm.weight"]
+    set optimizer_grouped_parameters = [
+        {"params": [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)], "weight_decay": args.weight_decay},
+        {"params": [p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)], "weight_decay": 0.0}
+    ]
+    set optimizer = AdamW(optimizer_grouped_parameters, lr=args.learning_rate, eps=args.adam_epsilon)
+
+    // Total step yang akan dilakukan
+    set total_steps = math.floor(len(train_dataset) / args.batch_size * args.epochs)
+    set args.warmup_steps = 0.1 * total_steps
+    set scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=args.warmup_steps, num_training_steps=total_steps)
+
+    // Start Training
+
+    set best_f1 = 0.0
+    set best_model = None
+    set current_step = 1
+    set train_loss = 0.0
+    set patience = 0
+
+    for (i, args.num_train_epochs, 1) do
+        // Shuffle Data training
+        random.shuffle(train_dataset)
+        set epoch_loss = 0.0
+
+        for (i = 0, len(train_dataset), args.batch_size) do
+            text, segment, label, mask = Batch(train_dataset, i, args.batch_size, args.device).__get_batch()
+            model.train()
+            // Menghitung loss
+            set loss = model.__get_loss(text, segment, mask, label)
+            loss = loss.sum() / args.batch_size
+            // Backpropagation
+            loss.backward()
+
+            set epoch_loss += loss.item()
+            set train_loss += loss.item()
+
+            // Gradient Clipping untuk menghindari exploding gradient
+            torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
+
+            // Update parameter
+            optimizer.step()
+            scheduler.step()
+            model.zero_grad()
+
+            current_step += 1
+        end
+        print(f"Epoch: {i+1}/{args.num_train_epochs}, Step: {current_step}, Train Loss: {train_loss/current_step}")
+
+
+        // Evaluasi model
+        f1_score, predictions = predict(validation_dataset, model, args)
+        if (f1_score > best_f1) do
+            // Update best model dan best f1 lalu save model
+            set best_f1 = f1_score
+            set best_model = model.state_dict()
+            model.save_pretrained(args.output_dir)
+            save_predictions(predictions, id2label)
+
+
+            // Reset patience
+            set patience = 0
+
+            print(f"Better model found at epoch {i+1} with f1_score: {best_f1}, resetting patience to 0")
+        end else do
+            // Tambah patience
+            set patience += 1
+            if (patience >= args.patience) do
+                print(f"Early stopping at epoch {i+1} with f1_score: {best_f1}")
+                return model yang sudah di training
+            end else do
+                print(f"Patience: {patience}/{args.patience}")
+                print(f"Current best f1_score: {best_f1}")
+            end
+
+        end
+    end
+    return model yang sudah di training
+end
+
+function predictFromBestModel(args): List<Int> do
+
+    Input = argumen parameter yang dibutuhkan untuk melakukan prediksi
+    Output = prediksi dari model yang sudah di training
+
+    // Setup CUDA, Seed, dan Tokenizer
+    set device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    set_seed(args.seed)
+    set tokenizer = BertTokenizer(args.model, args.max_tokens)
+
+    // Load data
+    set train_dataset = pd.read_csv(args.train_file, sep='\t', header=None)
+    set prediction_dataset = pd.read_csv(args.prediction_file, sep='\t', header=None)
+
+    // Split data menjadi text, label
+    set train_x = train_dataset["Text"].values
+    set train_y = train_dataset["Label"].values
+
+    set prediction_x = prediction_dataset["Text"].values
+    set prediction_y = prediction_dataset["Label"].values
+
+    // Mengubah label menjadi id
+    set label2id, id2label = label2id(train_y)
+    set prediction_y = convert_label2id(label2id, prediction_y)
+
+    // Preprocess data
+    set train_dataset = tokenzer.preprocess(train_x, train_y)
+    set prediction_dataset = tokenzer.preprocess(prediction_x, prediction_y)
+
+    model = Model(args, device)
+    model.load_state_dict(torch.load(args.output_dir + "/model.bin"))
+
+    // Evaluasi model
+    model.eval()
+    set predictions = []
+
+    for (i = 0, len(prediction_dataset), args.batch_size) do
+        text, segment, label, mask = Batch(prediction_dataset, i, args.batch_size, args.device).__get_batch()
+        set predictions += model.__predict(text, segment, mask)
+    end
+
+    return list prediksi dari model
+end
+
+// Shorter Psuedocode
+
+class BertTokenizer do
+
+    function preprocess_tweet(tweet<String>): String do
+        Input = tweet yang akan di preprocess
+        Output = string twwet yang sudah di preprocess
+    
+        tweet = emoji.demojize(tweet)
+        set new_tweet = []
+        foreach (word in tweet.split()) do
+            if (word[0] == '@' or word == "[username]") do
+                new_tweet.append("@USER")
+            end else if (find_url(word) != []) do
+                new_tweet.append("HTTPURL")
+            end else if (word == "httpurl" or word == "[url]") do
+                new_tweet.append("HTTPURL")
+            end else do
+                new_tweet.append(word)
+            end
+        end
+        return hasil new_tweet yang telah di join
+    end
+    
+
+    function preprocess_one(self, text<String>): (List<Int>, List<Int>) do
+        Input = text yang akan di preprocess
+        Output = representasi token dan segment dari text
+
+        set text = preprocess_tweet(text)
+
+        set tokens = "[CLS]" + self.tokenizer.tokenize(text) + ["SEP"]
+        set token_ids = self.tokenizer.convert_tokens_to_ids(tokens)
+
+        // Jika token lebih dari max token maka akan dipotong
+        if (len(token_ids) > max_tokens) do
+            token_ids = token_ids[:self.max_tokens]
+            token_ids[-1] = self.sep_vid
+        end else do
+            // Pad dengan pad_vid sampai panjang sama dengan max token
+            token_ids += [self.pad_vid] * (self.max_tokens - len(token_ids))
+        end
+        // Membuat segment id, 0 semua karena tidak ada segment
+        set segment_ids = [0] * len(token_ids) // segmen yang digunakan adalah 0 semua karena tidak ada segment
+
+        return representasi token dan segment dari text
+    end
+
+    function preprocess(self, texts<List<String>>): List<List<Int>> do
+        Input = list dari text yang akan di preprocess
+        Output = list representasi token dan segment dari text
+
+        set result = []
+        foreach (text in texts) do
+            result.append(self.preprocess_one(text))
+        end
+    end
+end
+
+
+class Batch do
+    constructor(self, data<DataFrame>, index<Int>, batch_size<Int>, device<Torch.Device>) do
+        set current_batch = data[index:index+batch_size]
+
+        // Membuat representasi token, segment, label, dan mask dari data
+        set texts = torch.tensor([x[0] for x in current_batch])
+        set segments = torch.tensor([x[1] for x in current_batch])
+        set labels = torch.tensor([x[2] for x in current_batch])
+        set text_masks = 0 + (texts != 0)
+
+        // Mengirim data ke device
+        set self.texts = texts.to(device)
+        set self.segments = segments.to(device)
+        set self.labels = labels.to(device)
+        set self.text_masks = text_masks.to(device)
+
+    end
+
+    function __get_batch(self): (List<Int>, List<Int>, List<Int>, List<Int>) do
+        Input = None
+        Output = Data batch tersebut
+
+        return self.texts, self.segments, self.labels, self.text_masks
+    end
+end
+
+
+class Model extends nn.Module do
+
+    function __forward_propagation(self, text<List<Int>>, segment<List<Int>>, mask<List<Boolean>>): List<Float> do
+        Input = representasi token, segment, dan mask dari text
+        Output = hasil prediksi dari model
+
+        set top_vec, _ = self.bert(input_ids=text, token_type_ids=segment, attention_mask=mask, return_dict=False)
+        set top_vec = self.dropout(top_vec)
+
+        // Mengubah mengalikan representasi token dengan dengan mask agar hanya kata - kata yang ada yang dihitung
+        set top_vec *= mask.unsqueeze(-1).float()
+        // Menghitung rata - rata dari representasi token, dan dinormalisasi dengan panjang mask
+        set top_vec = torch.sum(top_vec, dim=1) / mask.sum(dim = -1).float().unsqueeze(-1)
+        // Mengubah representasi token menjadi label
+        set result = self.linear(top_vec).squeeze()        
+        return hasil prediksi dari model
+    end
+
+    function __get_loss(self, text<List<Int>>, segment<List<Int>>, mask<List<Boolean>>): Float do
+        Input = representasi token, segment, mask, dan label dari text
+        Output = hasil loss dari model
+
+        set result = self.__forward_propagation(text, segment, mask)
+        // Menghitung loss dari hasil prediksi dengan label, view digunakan untuk mengubah bentuk hasil prediksi dan label jika perlu
+        set loss = self.loss(result.view(-1, self.args.label_size), label.view(-1))
+        return hasil loss dari model
+    end
+
+    function __predict(self, text<List<Int>>, segment<List<Int>>, mask<List<Boolean>>): List<Float> do
+        Input = representasi token, segment, dan mask dari text
+        Output = hasil prediksi dari model
+
+        set result = self.__forward_propagation(text, segment, mask)
+        // Mengambil index dari hasil prediksi dengan nilai tertinggi
+        set result = torch.argmax(result, dim=-1).data.cpu().numpy().tolist()
+        return hasil prediksi dari model
+    end
+end
+
+function train(args<Dict>, train_dataset <DataFrame>, validation_dataset<DataFrame>): Model.state_dict do
+    Input = args yang akan digunakan untuk training, data training, dan data validation
+    Output = model yang sudah di training
+
+    // Setup CUDA, Seed, dan Tokenizer
+    set device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    set_seed(args.seed)
+    set tokenizer = BertTokenizer(args.model, args.max_tokens)
+
+    // Load dan preprocess data
+    set train = BertTokenizer.preprocess(train["text"].tolist())
+    set train_labels = train["label"].tolist()
+    set validation = BertTokenizer.preprocess(validation["text"].tolist())
+    set validation_labels = validation["label"].tolist()
+
+    set optimizer = AdamW(args.optimizer, lr=args.learning_rate, eps=args.adam_epsilon)
+
+    set total_steps = math.floor(len(train_dataset) / args.batch_size * args.epochs)
+    set args.warmup_steps = 0.1 * total_steps
+    set scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=args.warmup_steps, num_training_steps=total_steps)
+
+    set best_f1 = 0.0
+    set best_model = None
+    set current_step = 1
+    set train_loss = 0.0
+    set patience = 0
+
+    for (i sampai jumlah epoch) do
+        random.shuffle(train_dataset)
+
+        set epoch_loss = 0.0
+
+        for (i = 0, len(train_dataset), args.batch_size) do
+            text, segment, label, mask = Batch(train_dataset, i, args.batch_size, args.device).__get_batch()
+            model.train()
+            set loss = model.__get_loss(text, segment, mask, label)
+            loss = loss.sum() / args.batch_size
+            loss.backward()
+            set epoch_loss += loss.item()
+            set train_loss += loss.item()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
+
+            optimizer.step()
+            scheduler.step()
+            model.zero_grad()
+
+            current_step += 1
+        end
+
+
+        f1_score, predictions = predict(validation_dataset, model, args)
+        if (f1_score > best_f1) do
+            set best_f1 = f1_score
+            set best_model = model.state_dict()
+            model.save_pretrained(args.output_dir)
+
+            set patience = 0
+
+        end else do
+            set patience += 1
+            if (patience >= args.patience) do
+                return model yang sudah di training
+            end 
+        end
+    end
+    return model yang sudah di training
+end
+
+function predictFromBestModel(args, test_dataset<DataFrame>): List<Int> do
+
+    Input = argumen parameter yang dibutuhkan untuk melakukan prediksi
+    Output = prediksi dari model yang sudah di training
+
+    // Setup CUDA, Seed, dan Tokenizer
+    set device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    set_seed(args.seed)
+    set tokenizer = BertTokenizer(args.model, args.max_tokens)
+
+
+    set prediction_x = prediction_dataset["Text"].values
+
+
+    // Preprocess data
+    set prediction_x = tokenzer.preprocess(prediction_x)
+
+    model = Model(args, device)
+    model.load_state_dict(torch.load(args.output_dir + "/model.bin"))
+
+    // Evaluasi model
+    model.eval()
+    set predictions = []
+
+    for (i = 0, len(prediction_dataset), args.batch_size) do
+        text, segment, label, mask = Batch(prediction_dataset, i, args.batch_size, args.device).__get_batch()
+        set predictions += model.__predict(text, segment, mask)
+    end
+
+    return list prediksi dari model
+end

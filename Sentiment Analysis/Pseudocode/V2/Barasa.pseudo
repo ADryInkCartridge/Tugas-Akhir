@@ -1,0 +1,156 @@
+class SentiSynset do
+    constructor(self, pos_score, neg_score, synset) do
+        Input = positive score, negative score, dan id synset dari synset tersebut
+        Output = SentiSynset
+
+        self.pos_score = pos_score
+        self.neg_score = neg_score
+        self.obj_score = 1.0 - (pos_score + neg_score)
+        self.synset = synset
+    end
+    function __pos_score(self): Float do
+        Input = SentiSynset
+        Output = positive score dari synset tersebut
+
+        return self.pos_score
+    end
+
+    function __neg_score(self): Float do
+        Input = SentiSynset
+        Output = negative score dari synset tersebut
+
+        return self.neg_score
+    end
+
+    function __obj_score(self): Float do
+        Input = SentiSynset
+        Output = objective score dari synset tersebut
+
+        return self.obj_score
+    end
+end
+
+class BarasaSentiWordNet do
+    constructor(self, barasa) do
+        Input = Text barasa yang telah diread per line
+        Output = CustomSentiwordNet
+
+        set synsets = {}
+        set id_dict = {}
+
+        foreach (line in barasa) do
+            id, lang, goodness, lemma, pos, neg = line.split("\t")
+
+            if id not in synset[id] then
+                synset[id] = {}
+            
+            // Konversi string ke float
+            pos = pos.float()
+            neg = neg.float()
+
+            synset[id][lemma] = SentiSynset(pos, neg, id)
+            id_dict[lemma] = id
+        end
+        set self.synsets = synsets
+        /* 
+            Karena ada banyak kata yang sama dengan id yang berbeda, maka kita perlu membuat dictionary berdasarkan kata yang unik
+            {
+                "id1" = {
+                    "kata1" = SentiSynset,
+                    "kata2" = SentiSynset
+                },
+                "id2" = {
+                    "kata1" = SentiSynset,
+                    "kata2" = SentiSynset
+                }
+            }
+        */
+        set self.lemmas = id_dict
+        /* 
+            dan karena kita tidak bisa mencari kata mana yang memiliki id yang mana maka dictionary untuk mencari id dari kata tersebut
+            {
+                "kata1" = "id1",
+                "kata2" = "id2"
+            }
+        */
+        // Dictionary dari kata yang tidak ditemukan dan banyak kemunculannya
+        set self.not_found = {}
+    end
+
+    function __get_synset(self,id): SentiSynset do
+        Input = id dari synset yang ingin dicari
+        Output = SentiSynset dari id tersebut
+
+        return self.synsets[id]
+    end
+
+    function __get_not_found(self): Dict<String> do
+        Input = CustomSentiwordNet
+        Output = List dari kata yang tidak ditemukan
+
+        return self.not_found
+    end
+
+    function __calculate_sentiment_score(self, tokens): (List<float>,List<float>) do
+        Input = Text yang telah di tokenize
+        Output = List dari positive score dan negative score
+
+        set pos = []
+        set neg = []
+
+        foreach (token in tokens) do
+            if token not in self.lemmas then
+                if token not in self.not_found then
+                    self.not_found[token] = 1
+                else
+                    self.not_found[token] += 1
+                continue
+            
+            set synset = self.synsets[self.lemmas[token]]
+            pos.append(synset.pos_score)
+            neg.append(synset.neg_score)
+            end
+
+        return list of pos score, list of neg score
+    end
+end
+
+
+// Shorter Pseudocode
+
+class SentiSynset do
+    constructor(self, pos_score<Float>, neg_score<Float>, synset<String>) do
+        Input = positive score, negative score, dan id synset dari synset tersebut
+        Output = SentiSynset
+
+        set self.pos_score = pos_score
+        set self.neg_score = neg_score
+        set self.obj_score = 1.0 - (pos_score + neg_score)
+        set self.synset = synset
+    end
+end
+
+class BarasaSentiWordNet do
+    function __calculate_sentiment_score(self, tokens<List<String>>): (List<float>,List<float>) do
+        Input = Text yang telah di tokenize
+        Output = List dari positive score dan negative score
+
+        set pos = []
+        set neg = []
+
+        foreach (token in tokens) do
+            if token not in self.lemmas then
+                if token not in self.not_found then
+                    self.not_found[token] = 1
+                else
+                    self.not_found[token] += 1
+                continue
+            
+            set synset = self.synsets[self.lemmas[token]]
+            pos.append(synset.pos_score)
+            neg.append(synset.neg_score)
+            end
+
+        return list of pos score, list of neg score
+    end
+end

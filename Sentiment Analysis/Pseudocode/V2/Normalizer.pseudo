@@ -1,0 +1,61 @@
+from nlp_id.tokenizer import Tokenizer
+
+class Normalizer do
+    function __normalize(self, text<String>): List<String> do
+        Input = text yang akan dinormalisasi
+        Output = text yang sudah dinormalisasi dam ditokenisasi
+
+        text = text.lower()
+
+        text = pengubahan text yang mengandung "&amp;", "&gt;", "&lt;" menjadi "dan", "lebih dari", "kurang dari"
+        text = re.sub(r"http\S+", "httpurl", text)
+        text = re.sub(r"<.*?>", " ", text)
+        text = re.sub(r"#\w+", " ", text)
+        text = re.sub(r"@\w+", "user", text)
+        text = re.sub("[^a-zA-z]", " ", text)
+        text = re.sub(" +", " ", text)
+        text = text.strip()
+
+        set result = []
+
+        set tokens = self.tokenizer.tokenize(text)
+        for token in tokens do
+            if token not in self.stopwords do
+                if token in self.slang do
+                    token = self.slang[token]
+                end
+                result.append(token)
+            end
+        end
+        return list berisi kata-kata yang sudah dinormalisasi dan ditokenisasi
+    end
+end
+
+class Normalizer do
+    function __normalize(self, text<String>): List<String> do
+        Input = text yang akan dinormalisasi
+        Output = text yang sudah dinormalisasi dam ditokenisasi
+
+        text = teks yang telah diubah menjadi huruf kecil
+        text = pengubahan text yang mengandung "&amp;", "&gt;", "&lt;" menjadi "dan", "lebih dari", "kurang dari"
+        text = teks yang mengandung url diubah menjadi "httpurl"
+        text = teks yang mengandung tag html diubah menjadi " "
+        text = teks yang mengandung hashtag diubah menjadi " "
+        text = teks yang mengandung mention diubah menjadi "user"
+        text = teks yang mengandung karakter selain huruf diubah menjadi " "
+        text = teks yang mengandung spasi lebih dari satu diubah menjadi " "
+        text = teks yang mengandung spasi di awal dan akhir dihapus
+
+        set result = []
+
+        set tokens = teks yang telah ditokenisasi
+
+        untuk setiap token dalam tokens do
+            if token tidak ada dalam dictionary stopwords then
+                if token ada dalam dictionary slang then
+                    token = kata yang sesuai dalam dictionary slang
+                result.append(token)
+        end
+        return list berisi kata-kata yang sudah dinormalisasi dan ditokenisasi
+    end
+end
